@@ -2,8 +2,8 @@
 <html lang="it"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14100c">
-<title>Kon Tiki · Pizza a Monza</title>
-<meta name="description" content="Kon Tiki a Monza: Pizza. Orari, indirizzo e prenotazioni.">
+<title>Kon Tiki · Pizzeria e steak house a Monza</title>
+<meta name="description" content="Kon Tiki a Monza: Pizzeria e steak house. Orari, indirizzo e prenotazioni.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
 <style>
@@ -134,11 +134,11 @@ a:focus-visible,.pill:focus-visible{outline:3px solid var(--amber);outline-offse
 <div class="preview">Anteprima realizzata per Kon Tiki · non ancora pubblicata</div>
 <header class="hero">
 <nav class="nav"><span class="logo"></span><a class="pill" href="tel:+39039328783">Chiama</a></nav>
-<picture><source media="(min-width:860px)" srcset="img/kon_hero_land.webp"><img src="img/kon_hero_land.webp" alt="Pizza dal crust sottile, foto reale del locale" fetchpriority="high"></picture>
+<picture><source media="(min-width:860px)" srcset="img/kon2_hero.webp"><img src="img/kon2_hero.webp" alt="Pizza grigliata e panini sul tavolo, foto dal profilo Instagram del locale" fetchpriority="high"></picture>
 <div class="in">
 <div class="eyebrow">Monza</div>
 <h1>Kon Tiki</h1>
-<p class="lead">Pizza.<br>Aperti da martedì a domenica.</p>
+<p class="lead">Pizzeria e steak house.<br>Aperti da martedì a domenica.</p>
 <div class="cta"><a class="pill solid" href="tel:+39039328783">Chiama per prenotare</a><a class="pill ghost" href="https://www.google.com/maps/search/?api=1&query=Kon%20Tiki%20Via%20Sempione%2012a%2C%20Monza" target="_blank" rel="noopener">Indicazioni</a></div>
 <div class="status" id="status" hidden><span class="dot" id="dot"></span><span id="stxt"></span></div>
 </div></header>
@@ -147,9 +147,9 @@ a:focus-visible,.pill:focus-visible{outline:3px solid var(--amber);outline-offse
 <section><div class="wrap">
 <div class="eyebrow">A tavola</div>
 <h2 class="reveal">Cosa si mangia</h2>
-<p class="sub reveal">Pizza.</p>
-<div class="tiles n3"><figure class="tile t0 reveal"><img src="img/kon_t_pizza.webp" alt="Pizza sottile" loading="lazy"><figcaption>Pizza sottile</figcaption></figure><figure class="tile t1 reveal"><img src="img/kon_t_sala.webp" alt="La sala" loading="lazy"><figcaption>La sala</figcaption></figure><figure class="tile t2 reveal"><img src="img/kon_t_carne.webp" alt="Dalla griglia" loading="lazy"><figcaption>Dalla griglia</figcaption></figure></div>
-<p class="note">Foto reali dei piatti e della sala, dalle schede pubbliche del locale. Prima della pubblicazione le sostituiamo con le vostre.</p>
+<p class="sub reveal">Pizzeria e steak house.</p>
+<div class="tiles n4"><figure class="tile t0 reveal"><img src="img/kon2_pizza.webp" alt="Pizza alle verdure grigliate" loading="lazy"><figcaption>Pizza alle verdure grigliate</figcaption></figure><figure class="tile t1 reveal"><img src="img/kon2_carne.webp" alt="Dalla griglia" loading="lazy"><figcaption>Dalla griglia</figcaption></figure><figure class="tile t2 reveal"><img src="img/kon2_burger.webp" alt="Hamburger con uovo" loading="lazy"><figcaption>Hamburger con uovo</figcaption></figure><figure class="tile t3 reveal"><img src="img/kon2_locale.webp" alt="Il dehors" loading="lazy"><figcaption>Il dehors</figcaption></figure></div>
+<p class="note">Foto reali dal vostro profilo Instagram e dalla scheda Google Maps. Le sostituiamo o aggiungiamo quelle che preferite.</p>
 </div></section>
 <section class="light" id="menu"><div class="wrap">
 <div class="eyebrow">Il menù</div>
@@ -175,7 +175,7 @@ a:focus-visible,.pill:focus-visible{outline:3px solid var(--amber);outline-offse
 
 <script>
 (function(){
-var b=document.getElementById('band'),words=["Pizza".split(" · ").join('|')][0].split('|'),h='';
+var b=document.getElementById('band'),words=["Pizzeria e steak house".split(" · ").join('|')][0].split('|'),h='';
 for(var k=0;k<14;k++)words.forEach(function(w){h+='<span>'+w+'</span><span><i>●</i></span>'});b.innerHTML=h+h;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
