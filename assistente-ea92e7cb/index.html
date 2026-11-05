@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Assistente di follow-up per chi vende a preventivo</title>
+<style>
+:root{--bg:#f6f4ef;--ink:#1c1b19;--mut:#6a665e;--line:#dedad0;--acc:#1f5eff;--card:#fff;--ok:#1f8a4c;--warn:#c4410c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.top{background:#fff6d6;color:#5a4300;font-size:13px;text-align:center;padding:8px 14px}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.02em;margin:40px 0 14px}
+.lead{font-size:19px;color:var(--mut);margin-bottom:26px}
+h2{font-size:24px;letter-spacing:-.01em;margin:44px 0 14px}
+.mail{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.mh{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--mut);background:#fbfaf6}
+.mh b{color:var(--ink)}
+.mb{padding:18px}
+.mb h3{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:18px 0 8px}
+.mb h3:first-child{margin-top:0}
+.row{padding:10px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:1px}
+.t-r{background:#ffe6dc;color:var(--warn)}.t-o{background:#e1f3e8;color:var(--ok)}.t-b{background:#e4ecff;color:var(--acc)}
+.draft{margin-top:6px;font-size:15px;color:var(--mut);background:#f3f1ea;border-left:3px solid var(--line);padding:8px 12px;border-radius:0 8px 8px 0}
+.steps{display:grid;gap:12px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.step b{display:block;margin-bottom:2px}
+.price{background:var(--ink);color:#fff;border-radius:14px;padding:24px;margin-top:36px}
+.price big{font-size:34px;font-weight:800;letter-spacing:-.02em}
+.price p{color:#d4d1c8;margin-top:6px}
+.cta{display:block;margin-top:18px;background:var(--acc);color:#fff;text-align:center;text-decoration:none;font-weight:700;padding:15px 18px;border-radius:10px}
+footer{color:var(--mut);font-size:13.5px;margin:30px 0 50px}
+</style></head><body>
+<div class="top">Questo è un esempio con dati inventati, per mostrare come funziona.</div>
+<div class="wrap">
+<h1>Nessun preventivo dimenticato.</h1>
+<p class="lead">Un assistente AI che, ogni mattina, ti dice chi richiamare, ti scrive già il messaggio, e il lunedì ti segnala le trattative ferme. Senza installare niente e senza darmi accessi.</p>
+
+<h2>Ecco la mail che ricevi ogni mattina alle 8</h2>
+<div class="mail"><div class="mh"><b>Da:</b> Il tuo assistente &nbsp;·&nbsp; <b>Oggetto:</b> Oggi richiama 3 clienti, 1 preventivo è fermo da 9 giorni</div>
+<div class="mb">
+<h3>Da richiamare oggi</h3>
+<div class="row"><span class="tag t-r">scaduto</span><b>Rossi Costruzioni</b> · preventivo 4.800 € inviato il 27/10 (9 giorni)
+<div class="draft">“Buongiorno, le scrivo per sapere se ha avuto modo di vedere il preventivo del 27 ottobre. Se vuole, lo rivediamo insieme: posso adattarlo alle sue esigenze.”</div></div>
+<div class="row"><span class="tag t-o">oggi</span><b>Bianchi Maria</b> · preventivo 2.100 € inviato il 2/11 (3 giorni)
+<div class="draft">“Buongiorno Maria, le ho mandato il preventivo tre giorni fa: ha domande o c’è qualcosa che vuole modificare?”</div></div>
+<div class="row"><span class="tag t-b">pagamento</span><b>Verdi SRL</b> · fattura 1.350 € scaduta il 30/10
+<div class="draft">“Buongiorno, ci risulta ancora aperta la fattura 112 di 1.350 € in scadenza il 30/10. Ci può confermare la data di pagamento?”</div></div>
+<h3>Il lunedì: trattative ferme</h3>
+<div class="row">Totale: 14 trattative, 11 con un prossimo contatto, <b>3 ferme da più di 7 giorni</b>.</div>
+</div></div>
+
+<h2>Come funziona</h2>
+<div class="steps">
+<div class="step"><b>1. Mi metti in copia.</b>Quando mandi un preventivo o una fattura, aggiungi il mio indirizzo in copia nascosta. Oppure mi mandi un elenco una volta.</div>
+<div class="step"><b>2. Io tengo il conto.</b>Annoto cliente, importo, data e prossimo passo. Se qualcosa cambia, mi rispondi alla mail del mattino con una riga.</div>
+<div class="step"><b>3. Tu decidi.</b>Le bozze sono tue: le copi, le modifichi, le mandi. Non scrivo ai tuoi clienti al posto tuo.</div>
+</div>
+
+<div class="price"><big>49 € al mese</big><p>Prima settimana gratis. Nessun vincolo: disdici con una mail.</p>
+<a class="cta" href="mailto:info@nederghadhab.com?subject=Voglio%20provare%20l%27assistente">Scrivimi “sì”, ti dico cosa mandarmi</a></div>
+<footer>Esempio realizzato con dati inventati. Neder Ghadhab · info@nederghadhab.com</footer>
+</div></body></html>
