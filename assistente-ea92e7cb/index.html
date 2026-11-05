@@ -1,62 +1,248 @@
 <!doctype html>
 <html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex"><title>Assistente di follow-up per chi vende a preventivo</title>
+<meta name="robots" content="noindex"><meta name="theme-color" content="#0f3d33">
+<title>Assistente di follow-up per chi vende a preventivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4ef;--ink:#1c1b19;--mut:#6a665e;--line:#dedad0;--acc:#1f5eff;--card:#fff;--ok:#1f8a4c;--warn:#c4410c}
+:root{
+  --canvas:#f6f1e7; --paper:#fffdf8; --ink:#14201b; --mut:#55625b; --line:#e2dccd;
+  --green:#0f3d33; --green2:#17594a; --mint:#dff0e6; --coral:#e2481c; --coral-bg:#fde4da; --sun:#f2b632; --sun-bg:#fbefc9;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif; --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font:400 17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-.wrap{max-width:760px;margin:0 auto;padding:0 20px}
-.top{background:#fff6d6;color:#5a4300;font-size:13px;text-align:center;padding:8px 14px}
-h1{font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.02em;margin:40px 0 14px}
-.lead{font-size:19px;color:var(--mut);margin-bottom:26px}
-h2{font-size:24px;letter-spacing:-.01em;margin:44px 0 14px}
-.mail{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.03)}
-.mh{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--mut);background:#fbfaf6}
-.mh b{color:var(--ink)}
-.mb{padding:18px}
-.mb h3{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:18px 0 8px}
-.mb h3:first-child{margin-top:0}
-.row{padding:10px 0;border-top:1px solid var(--line)}
-.row:first-of-type{border-top:0}
-.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:1px}
-.t-r{background:#ffe6dc;color:var(--warn)}.t-o{background:#e1f3e8;color:var(--ok)}.t-b{background:#e4ecff;color:var(--acc)}
-.draft{margin-top:6px;font-size:15px;color:var(--mut);background:#f3f1ea;border-left:3px solid var(--line);padding:8px 12px;border-radius:0 8px 8px 0}
-.steps{display:grid;gap:12px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
-.step b{display:block;margin-bottom:2px}
-.price{background:var(--ink);color:#fff;border-radius:14px;padding:24px;margin-top:36px}
-.price big{font-size:34px;font-weight:800;letter-spacing:-.02em}
-.price p{color:#d4d1c8;margin-top:6px}
-.cta{display:block;margin-top:18px;background:var(--acc);color:#fff;text-align:center;text-decoration:none;font-weight:700;padding:15px 18px;border-radius:10px}
-footer{color:var(--mut);font-size:13.5px;margin:30px 0 50px}
+html{scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--ink);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;caret-color:var(--coral)}
+::selection{background:var(--sun);color:var(--ink)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:6px}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.note{background:var(--sun-bg);color:#5b4308;font-size:13.5px;text-align:center;padding:9px 16px}
+header.bar{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{font:600 17px/1 var(--sans);letter-spacing:-.01em}
+.brand span{color:var(--mut);font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:12px;background:var(--coral);color:#fff;text-decoration:none;font:600 17px/1 var(--sans);transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s;box-shadow:0 1px 0 rgba(0,0,0,.08),0 8px 20px -8px rgba(226,72,28,.6)}
+.btn:hover{transform:translateY(-2px);background:#c93d14;box-shadow:0 1px 0 rgba(0,0,0,.08),0 12px 24px -8px rgba(226,72,28,.7)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:36px 0 84px}
+h1{font:600 clamp(40px,6.2vw,72px)/1.02 var(--serif);letter-spacing:-.025em;text-wrap:balance}
+h1 em{font-style:italic;font-weight:500;color:var(--coral)}
+.sub{font-size:clamp(18px,2.2vw,21px);color:var(--mut);margin:22px 0 30px;max-width:30em;text-wrap:pretty}
+.row-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;font-size:15px;color:var(--mut)}
+.trust li{list-style:none;display:flex;align-items:center;gap:8px}
+.ck{width:18px;height:18px;flex:none;stroke:var(--green2);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.stage{position:relative;display:flex;justify-content:center}
+.stage::before{content:"";position:absolute;inset:6% -4% 2% 6%;background:var(--mint);border-radius:44px;transform:rotate(3deg)}
+.phone{position:relative;width:min(340px,100%);background:#0c1411;border-radius:42px;padding:11px;box-shadow:0 40px 60px -30px rgba(20,32,27,.55),0 2px 0 rgba(255,255,255,.08) inset;transform:rotate(-1.5deg)}
+.screen{background:var(--paper);border-radius:32px;overflow:hidden;min-height:540px}
+.sbar{display:flex;justify-content:space-between;padding:12px 22px 4px;font:600 12.5px/1 var(--sans);color:var(--ink)}
+.mhead{padding:10px 18px 14px;border-bottom:1px solid var(--line)}
+.from{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut)}
+.av{width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font:700 13px/1 var(--sans)}
+.from b{display:block;color:var(--ink);font-size:14px}
+.mhead h3{font:600 19px/1.2 var(--serif);margin-top:10px;letter-spacing:-.01em}
+.items{padding:6px 16px 16px}
+.it{padding:13px 0;border-bottom:1px solid var(--line)}
+.it:last-child{border-bottom:0}
+.top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{font:700 11px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:999px}
+.p-r{background:var(--coral-bg);color:#a8300d}.p-o{background:var(--sun-bg);color:#6a4c06}.p-g{background:var(--mint);color:var(--green)}
+.nm{font-weight:700;font-size:15px}
+.amt{margin-left:auto;font-weight:600;font-size:14px;color:var(--mut)}
+.meta{font-size:13px;color:var(--mut);margin-top:3px}
+.draft{margin-top:9px;background:#f1eee4;border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:13.5px;line-height:1.45;color:#2d3a34}
+.copy{display:inline-block;margin-top:8px;font:600 12.5px/1 var(--sans);color:var(--green2)}
+@media (prefers-reduced-motion:no-preference){
+  .it{animation:rise .8s var(--ease) backwards}
+  .it:nth-child(1){animation-delay:.35s}.it:nth-child(2){animation-delay:.6s}.it:nth-child(3){animation-delay:.85s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
+}
+
+section{padding:84px 0}
+h2{font:600 clamp(32px,4.6vw,52px)/1.08 var(--serif);letter-spacing:-.02em;text-wrap:balance;max-width:16em}
+.lede{font-size:19px;color:var(--mut);margin-top:16px;max-width:34em;text-wrap:pretty}
+.paper{background:var(--paper);border-block:1px solid var(--line)}
+
+.tl{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.tl::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:var(--line)}
+.tl>div{position:relative;padding-top:48px;padding-right:18px}
+.tl>div::before{content:"";position:absolute;top:6px;left:0;width:20px;height:20px;border-radius:50%;background:var(--paper);border:3px solid var(--green2)}
+.tl>div.bad::before{border-color:var(--coral);background:var(--coral)}
+.tl .d{font:600 14px/1 var(--sans);color:var(--green2);letter-spacing:.02em}
+.tl .bad .d{color:var(--coral)}
+.tl p{margin-top:8px;font-size:16.5px;line-height:1.45}
+
+.how{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.steps{list-style:none;display:grid;gap:30px}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:18px}
+.n{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font:600 19px/1 var(--serif)}
+.steps b{display:block;font:600 21px/1.25 var(--serif);margin-bottom:4px}
+.steps p{color:var(--mut);font-size:17px}
+.cc{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 40px -30px rgba(20,32,27,.45)}
+.cc .f{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px;align-items:baseline}
+.cc .f span{width:64px;color:var(--mut);flex:none}
+.cc .hl{background:var(--sun-bg);border-radius:8px;padding:2px 8px;font-weight:600;word-break:break-all}
+.cc .body{margin-top:12px;padding:14px;background:var(--canvas);border-radius:12px;font-size:15px;color:var(--mut)}
+
+.mon{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.big{background:var(--canvas);border:1px solid var(--line);border-radius:18px;padding:26px}
+.big b{display:block;font:600 52px/1 var(--serif);letter-spacing:-.03em}
+.big.alert{background:var(--green);border-color:var(--green);color:#fff}
+.big.alert b{color:var(--sun)}
+.big span{display:block;margin-top:10px;font-size:16px;color:var(--mut)}
+.big.alert span{color:#cfe3da}
+
+.price{background:var(--green);color:#fff;border-radius:28px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.price h2{color:#fff;font-size:clamp(30px,4vw,44px)}
+.amount{font:600 clamp(64px,10vw,104px)/.95 var(--serif);letter-spacing:-.04em;margin-top:18px}
+.amount small{font:500 22px/1 var(--sans);letter-spacing:0;color:#cfe3da}
+.free{display:inline-block;margin-top:14px;background:var(--sun);color:var(--ink);font:700 14px/1 var(--sans);padding:9px 14px;border-radius:999px}
+.list{list-style:none;display:grid;gap:14px}
+.list li{display:flex;gap:12px;align-items:flex-start;font-size:17.5px;color:#e6f1ec}
+.list .ck{stroke:var(--sun);margin-top:4px}
+.price .btn{margin-top:26px;width:100%}
+
+.faq{margin-top:34px;display:grid;gap:12px;max-width:760px}
+details{background:var(--canvas);border:1px solid var(--line);border-radius:14px;padding:0 22px}
+summary{cursor:pointer;list-style:none;min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;font:600 18px/1.3 var(--sans)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:12px;height:12px;border-right:2.5px solid var(--green2);border-bottom:2.5px solid var(--green2);transform:rotate(45deg);transition:transform .3s var(--ease);flex:none;margin-top:-4px}
+details[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+details p{padding:0 0 20px;color:var(--mut);font-size:17px}
+footer{padding:36px 0 56px;color:var(--mut);font-size:14.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:44px;padding-bottom:56px}
+  .how,.price{grid-template-columns:1fr;gap:34px}
+  .mon{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr;gap:26px}
+  .tl::before{left:9px;right:auto;top:6px;bottom:30px;width:2px;height:auto}
+  .tl>div{padding:0 0 0 44px}
+  .tl>div::before{top:2px}
+  section{padding:60px 0}
+  .stage::before{inset:4% 0 0 4%}
+}
+@media (max-width:480px){
+  .wrap{padding:0 18px}
+  .row-cta .btn{width:100%}
+  .brand span{display:none}
+  .phone{border-radius:36px;padding:9px}
+  .screen{border-radius:28px}
+}
 </style></head><body>
-<div class="top">Questo è un esempio con dati inventati, per mostrare come funziona.</div>
+<div class="note">Pagina di esempio: i nomi e le cifre nella mail sono inventati, per mostrare come funziona.</div>
 <div class="wrap">
-<h1>Nessun preventivo dimenticato.</h1>
-<p class="lead">Un assistente AI che, ogni mattina, ti dice chi richiamare, ti scrive già il messaggio, e il lunedì ti segnala le trattative ferme. Senza installare niente e senza darmi accessi.</p>
+<header class="bar"><div class="brand">Neder Ghadhab <span>· assistenti AI per le aziende</span></div><a class="btn sm" href="#prezzo">Provalo gratis</a></header>
 
-<h2>Ecco la mail che ricevi ogni mattina alle 8</h2>
-<div class="mail"><div class="mh"><b>Da:</b> Il tuo assistente &nbsp;·&nbsp; <b>Oggetto:</b> Oggi richiama 3 clienti, 1 preventivo è fermo da 9 giorni</div>
-<div class="mb">
-<h3>Da richiamare oggi</h3>
-<div class="row"><span class="tag t-r">scaduto</span><b>Rossi Costruzioni</b> · preventivo 4.800 € inviato il 27/10 (9 giorni)
-<div class="draft">“Buongiorno, le scrivo per sapere se ha avuto modo di vedere il preventivo del 27 ottobre. Se vuole, lo rivediamo insieme: posso adattarlo alle sue esigenze.”</div></div>
-<div class="row"><span class="tag t-o">oggi</span><b>Bianchi Maria</b> · preventivo 2.100 € inviato il 2/11 (3 giorni)
-<div class="draft">“Buongiorno Maria, le ho mandato il preventivo tre giorni fa: ha domande o c’è qualcosa che vuole modificare?”</div></div>
-<div class="row"><span class="tag t-b">pagamento</span><b>Verdi SRL</b> · fattura 1.350 € scaduta il 30/10
-<div class="draft">“Buongiorno, ci risulta ancora aperta la fattura 112 di 1.350 € in scadenza il 30/10. Ci può confermare la data di pagamento?”</div></div>
-<h3>Il lunedì: trattative ferme</h3>
-<div class="row">Totale: 14 trattative, 11 con un prossimo contatto, <b>3 ferme da più di 7 giorni</b>.</div>
-</div></div>
-
-<h2>Come funziona</h2>
-<div class="steps">
-<div class="step"><b>1. Mi metti in copia.</b>Quando mandi un preventivo o una fattura, aggiungi il mio indirizzo in copia nascosta. Oppure mi mandi un elenco una volta.</div>
-<div class="step"><b>2. Io tengo il conto.</b>Annoto cliente, importo, data e prossimo passo. Se qualcosa cambia, mi rispondi alla mail del mattino con una riga.</div>
-<div class="step"><b>3. Tu decidi.</b>Le bozze sono tue: le copi, le modifichi, le mandi. Non scrivo ai tuoi clienti al posto tuo.</div>
+<main>
+<div class="hero">
+  <div>
+    <h1>Nessun preventivo <em>dimenticato.</em></h1>
+    <p class="sub">Ogni mattina ricevi una mail che ti dice chi richiamare, con il messaggio già scritto. Il lunedì ti segnala le trattative che si sono fermate.</p>
+    <div class="row-cta"><a class="btn" href="#prezzo">Provalo una settimana gratis</a><a class="btn ghost" href="#come">Come funziona</a></div>
+    <ul class="trust">
+      <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Niente da installare</li>
+      <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Nessun accesso alla tua posta</li>
+      <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Disdici con una mail</li>
+    </ul>
+  </div>
+  <div class="stage" aria-label="Esempio della mail del mattino">
+    <div class="phone"><div class="screen">
+      <div class="sbar"><span>8:00</span><span>●●●</span></div>
+      <div class="mhead">
+        <div class="from"><div class="av">A</div><div><b>Il tuo assistente</b>oggi, 8:00</div></div>
+        <h3>Oggi richiama 3 clienti: un preventivo è fermo da 9 giorni</h3>
+      </div>
+      <div class="items">
+        <div class="it"><div class="top"><span class="pill p-r">fermo da 9 giorni</span></div>
+          <div class="top" style="margin-top:8px"><span class="nm">Rossi Costruzioni</span><span class="amt">4.800 €</span></div>
+          <div class="meta">Preventivo inviato il 27 ottobre</div>
+          <div class="draft">“Buongiorno, le scrivo per sapere se ha avuto modo di vedere il preventivo del 27 ottobre. Se vuole, lo rivediamo insieme.”</div><span class="copy">Copia e invia</span></div>
+        <div class="it"><div class="top"><span class="pill p-o">da richiamare oggi</span></div>
+          <div class="top" style="margin-top:8px"><span class="nm">Bianchi Maria</span><span class="amt">2.100 €</span></div>
+          <div class="meta">Preventivo inviato 3 giorni fa</div></div>
+        <div class="it"><div class="top"><span class="pill p-g">pagamento</span></div>
+          <div class="top" style="margin-top:8px"><span class="nm">Verdi SRL</span><span class="amt">1.350 €</span></div>
+          <div class="meta">Fattura 112 scaduta il 30 ottobre</div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+</main>
 </div>
 
-<div class="price"><big>49 € al mese</big><p>Prima settimana gratis. Nessun vincolo: disdici con una mail.</p>
-<a class="cta" href="mailto:info@nederghadhab.com?subject=Voglio%20provare%20l%27assistente">Scrivimi “sì”, ti dico cosa mandarmi</a></div>
-<footer>Esempio realizzato con dati inventati. Neder Ghadhab · info@nederghadhab.com</footer>
-</div></body></html>
+<section class="paper"><div class="wrap">
+  <h2>Il preventivo non si perde il giorno che lo mandi. Si perde dopo.</h2>
+  <p class="lede">Hai il cantiere, il telefono, i clienti da seguire. Il messaggio “ci sono novità?” viene sempre rimandato a domani.</p>
+  <div class="tl">
+    <div><div class="d">Giorno 0</div><p>Mandi il preventivo.</p></div>
+    <div><div class="d">Giorno 3</div><p>Il momento giusto per richiamare. Hai altro da fare.</p></div>
+    <div><div class="d">Giorno 9</div><p>Il cliente si è già rivolto a un altro.</p></div>
+    <div class="bad"><div class="d">Mai</div><p>Il preventivo resta in un cassetto e nessuno se ne accorge.</p></div>
+  </div>
+</div></section>
+
+<section id="come"><div class="wrap">
+  <h2>Tu lavori come sempre. Al resto penso io.</h2>
+  <div class="how">
+    <ol class="steps">
+      <li><span class="n">1</span><div><b>Mi metti in copia</b><p>Quando mandi un preventivo o una fattura, aggiungi il mio indirizzo in copia nascosta. Oppure mi mandi l’elenco una volta sola.</p></div></li>
+      <li><span class="n">2</span><div><b>Io tengo il conto</b><p>Annoto cliente, importo, data e prossimo passo. Se qualcosa cambia, mi rispondi alla mail del mattino con una riga.</p></div></li>
+      <li><span class="n">3</span><div><b>Tu decidi</b><p>Le bozze sono tue: le copi, le modifichi, le mandi. Non scrivo mai ai tuoi clienti al posto tuo.</p></div></li>
+    </ol>
+    <div class="cc" aria-label="Esempio di mail con copia nascosta">
+      <div class="f"><span>A</span>rossi.costruzioni@esempio.it</div>
+      <div class="f"><span>Ccn</span><b class="hl">info@nederghadhab.com</b></div>
+      <div class="f"><span>Oggetto</span>Preventivo n. 214 — ristrutturazione</div>
+      <div class="body">In allegato il preventivo richiesto. Resto a disposizione per ogni chiarimento…</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="paper"><div class="wrap">
+  <h2>Ogni lunedì sai cosa si è fermato.</h2>
+  <p class="lede">Un riepilogo semplice: quante trattative hai aperte, quali hanno una data per il prossimo contatto e quali stanno scivolando via.</p>
+  <div class="mon">
+    <div class="big"><b>14</b><span>trattative aperte</span></div>
+    <div class="big"><b>11</b><span>con un prossimo contatto già fissato</span></div>
+    <div class="big alert"><b>3</b><span>ferme da più di una settimana, con la bozza per ripartire</span></div>
+  </div>
+</div></section>
+
+<section id="prezzo"><div class="wrap">
+  <div class="price">
+    <div>
+      <h2>Provalo una settimana, senza rischi.</h2>
+      <div class="amount">49 €<small> / mese</small></div>
+      <span class="free">Prima settimana gratis</span>
+    </div>
+    <div>
+      <ul class="list">
+        <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>La mail del mattino con chi richiamare e le bozze</li>
+        <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Il riepilogo del lunedì sulle trattative ferme</li>
+        <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Il promemoria sulle fatture in scadenza</li>
+        <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Nessun vincolo: disdici con una mail</li>
+      </ul>
+      <a class="btn" href="mailto:info@nederghadhab.com?subject=Voglio%20provare%20l%27assistente&body=Buongiorno%2C%20vorrei%20provare%20l%27assistente%20per%20una%20settimana.">Scrivimi “sì” e iniziamo</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="paper"><div class="wrap">
+  <h2>Le domande che mi fanno più spesso.</h2>
+  <div class="faq">
+    <details><summary>Devo darti l’accesso alla mia posta o al gestionale?</summary><p>No. Lavoro solo con quello che mi metti in copia o mi mandi per mail. Non entro in nessun tuo sistema.</p></details>
+    <details><summary>Scrivi tu ai miei clienti?</summary><p>No. Ti preparo le bozze, ma le mandi tu, quando e come vuoi. I tuoi clienti non sanno che esisto.</p></details>
+    <details><summary>Che fine fanno i dati dei miei clienti?</summary><p>Li uso solo per il servizio e non li condivido con nessuno. Se disdici, li cancello.</p></details>
+    <details><summary>E se non mi serve?</summary><p>La prima settimana è gratis. Se non fa per te, mi scrivi una riga e finisce lì, senza pagare nulla.</p></details>
+  </div>
+</div></section>
+
+<div class="wrap"><footer><span>Neder Ghadhab · info@nederghadhab.com</span><span>Pagina di esempio con dati inventati.</span></footer></div>
+</body></html>
