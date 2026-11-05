@@ -135,6 +135,10 @@ footer{padding:36px 0 56px;color:var(--mut);font-size:14.5px;display:flex;flex-w
   .phone{border-radius:36px;padding:9px}
   .screen{border-radius:28px}
 }
+.acts{display:flex;gap:8px;margin-top:10px}
+.act{flex:1;min-height:38px;border-radius:10px;display:grid;place-items:center;font:700 13px/1 var(--sans)}
+.act.go{background:var(--green);color:#fff}.act.wait{background:#efe9da;color:var(--ink)}
+.sent{margin-top:8px;font-size:12px;color:var(--green2);font-weight:600}
 </style></head><body>
 <div class="note">Pagina di esempio: i nomi e le cifre nella mail sono inventati, per mostrare come funziona.</div>
 <div class="wrap">
@@ -163,7 +167,7 @@ footer{padding:36px 0 56px;color:var(--mut);font-size:14.5px;display:flex;flex-w
         <div class="it"><div class="top"><span class="pill p-r">fermo da 9 giorni</span></div>
           <div class="top" style="margin-top:8px"><span class="nm">Rossi Costruzioni</span><span class="amt">4.800 €</span></div>
           <div class="meta">Preventivo inviato il 27 ottobre</div>
-          <div class="draft">“Buongiorno, le scrivo per sapere se ha avuto modo di vedere il preventivo del 27 ottobre. Se vuole, lo rivediamo insieme.”</div><span class="copy">Copia e invia</span></div>
+          <div class="draft">“Buongiorno, le scrivo per sapere se ha avuto modo di vedere il preventivo del 27 ottobre. Se vuole, lo rivediamo insieme.”</div><div class="acts"><span class="act go">Approva e invia</span><span class="act wait">Rimanda a domani</span></div></div>
         <div class="it"><div class="top"><span class="pill p-o">da richiamare oggi</span></div>
           <div class="top" style="margin-top:8px"><span class="nm">Bianchi Maria</span><span class="amt">2.100 €</span></div>
           <div class="meta">Preventivo inviato 3 giorni fa</div></div>
@@ -194,7 +198,7 @@ footer{padding:36px 0 56px;color:var(--mut);font-size:14.5px;display:flex;flex-w
     <ol class="steps">
       <li><span class="n">1</span><div><b>Mi metti in copia</b><p>Quando mandi un preventivo o una fattura, aggiungi il mio indirizzo in copia nascosta. Oppure mi mandi l’elenco una volta sola.</p></div></li>
       <li><span class="n">2</span><div><b>Io tengo il conto</b><p>Annoto cliente, importo, data e prossimo passo. Se qualcosa cambia, mi rispondi alla mail del mattino con una riga.</p></div></li>
-      <li><span class="n">3</span><div><b>Tu decidi</b><p>Le bozze sono tue: le copi, le modifichi, le mandi. Non scrivo mai ai tuoi clienti al posto tuo.</p></div></li>
+      <li><span class="n">3</span><div><b>Tu approvi</b><p>Sotto ogni bozza ci sono due pulsanti: approva o rimanda. Se approvi, il messaggio parte al momento giusto. Senza il tuo sì non parte niente, e le risposte dei clienti arrivano a te.</p></div></li>
     </ol>
     <div class="cc" aria-label="Esempio di mail con copia nascosta">
       <div class="f"><span>A</span>rossi.costruzioni@esempio.it</div>
@@ -227,6 +231,7 @@ footer{padding:36px 0 56px;color:var(--mut);font-size:14.5px;display:flex;flex-w
         <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>La mail del mattino con chi richiamare e le bozze</li>
         <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Il riepilogo del lunedì sulle trattative ferme</li>
         <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Il promemoria sulle fatture in scadenza</li>
+        <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Il tuo spazio con tutti i task, quando serve</li>
         <li><svg class="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Nessun vincolo: disdici con una mail</li>
       </ul>
       <a class="btn" href="mailto:info@nederghadhab.com?subject=Voglio%20provare%20l%27assistente&body=Buongiorno%2C%20vorrei%20provare%20l%27assistente%20per%20una%20settimana.">Scrivimi “sì” e iniziamo</a>
@@ -238,7 +243,7 @@ footer{padding:36px 0 56px;color:var(--mut);font-size:14.5px;display:flex;flex-w
   <h2>Le domande che mi fanno più spesso.</h2>
   <div class="faq">
     <details><summary>Devo darti l’accesso alla mia posta o al gestionale?</summary><p>No. Lavoro solo con quello che mi metti in copia o mi mandi per mail. Non entro in nessun tuo sistema.</p></details>
-    <details><summary>Scrivi tu ai miei clienti?</summary><p>No. Ti preparo le bozze, ma le mandi tu, quando e come vuoi. I tuoi clienti non sanno che esisto.</p></details>
+    <details><summary>Scrivi tu ai miei clienti?</summary><p>Solo dopo il tuo sì, bozza per bozza. Vedi il testo prima, puoi cambiarlo o rimandarlo. Il messaggio porta il nome della tua azienda e le risposte arrivano a te.</p></details>
     <details><summary>Che fine fanno i dati dei miei clienti?</summary><p>Li uso solo per il servizio e non li condivido con nessuno. Se disdici, li cancello.</p></details>
     <details><summary>E se non mi serve?</summary><p>La prima settimana è gratis. Se non fa per te, mi scrivi una riga e finisce lì, senza pagare nulla.</p></details>
   </div>
