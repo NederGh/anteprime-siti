@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><meta name="theme-color" content="#0f3d33">
+<title>Your daily board — demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#f6f1e7;--paper:#fffdf8;--ink:#14201b;--mut:#55625b;--line:#e2dccd;--green:#0f3d33;--green2:#17594a;--mint:#dff0e6;--coral:#e2481c;--coral-bg:#fde4da;--sun:#f2b632;--sun-bg:#fbefc9;--serif:"Fraunces",Georgia,serif;--sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--canvas);color:var(--ink);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased;caret-color:var(--coral)}
+::selection{background:var(--sun)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:8px}
+button,textarea{font-family:inherit}
+.demo{background:var(--green);color:#e9f3ee;font-size:14px;text-align:center;padding:10px 16px}
+.demo b{background:var(--sun);color:var(--ink);padding:2px 8px;border-radius:999px;font-size:12px;letter-spacing:.04em;margin-right:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.bar{display:flex;align-items:flex-end;justify-content:space-between;padding:22px 0 6px;gap:14px;flex-wrap:wrap}
+.bar h1{font:600 clamp(26px,4vw,38px)/1.1 var(--serif);letter-spacing:-.02em}
+.bar p{color:var(--mut);font-size:16px;margin-top:6px}
+.back{font:600 14.5px/1 var(--sans);color:var(--green2);text-decoration:none;padding:10px 0}
+.guide{display:flex;gap:10px;align-items:flex-start;background:var(--sun-bg);color:#5b4308;border-radius:14px;padding:12px 16px;margin:14px 0 4px;font-size:15.5px}
+.guide svg{flex:none;width:20px;height:20px;margin-top:2px;stroke:#8a6208;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;padding:14px 0 60px;align-items:start}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px}
+.tasks{display:grid;gap:14px}
+.task{padding:20px;transition:opacity .4s var(--ease)}
+.task.done{opacity:.6}
+.t-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{font:700 11.5px/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.s-late{background:var(--coral-bg);color:#9c2a09}.s-today{background:var(--sun-bg);color:#5f4405}.s-pay{background:var(--mint);color:var(--green)}.s-ok{background:var(--green);color:#fff}.s-wait{background:#ece6d6;color:#4a554f}
+.t-name{font:600 20px/1.2 var(--serif);margin-top:10px;display:flex;justify-content:space-between;gap:12px}
+.t-amt{font:600 16px/1.2 var(--sans);color:var(--mut)}
+.t-meta{color:var(--mut);font-size:15px;margin-top:3px}
+.draft{margin-top:12px;background:#f1eee4;border-radius:14px 14px 14px 4px;padding:13px 15px;font-size:15.5px;line-height:1.5;color:#2d3a34}
+.draft small{display:block;font-size:12.5px;color:var(--mut);margin-bottom:4px;font-weight:600}
+.acts{display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap}
+.b{min-height:48px;padding:0 20px;border-radius:12px;border:0;font:600 16px/1 var(--sans);cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.b:hover{transform:translateY(-1px)}
+.b.go{background:var(--coral);color:#fff;box-shadow:0 8px 18px -10px rgba(226,72,28,.7);flex:1 1 200px}.b.go:hover{background:#c93d14}
+.b.wait{background:#ece6d6;color:var(--ink)}
+.link{background:none;border:0;color:var(--mut);font:600 14.5px/1 var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;padding:0 8px}
+.sentbox{margin-top:12px;background:var(--mint);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--green)}
+.sentbox b{display:block;margin-bottom:2px}
+.undo{display:block;background:none;border:0;color:var(--green);font:700 15px/1 var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer;margin:8px 0 0;min-height:44px;padding:0}
+.empty{padding:30px 22px;text-align:center}
+.empty h2{font:600 24px/1.2 var(--serif)}
+.empty p{color:var(--mut);margin:8px 0 18px}
+.side{display:grid;gap:18px;position:sticky;top:14px}
+.voice{padding:22px}
+.voice h2{font:600 22px/1.2 var(--serif)}
+.voice .s{color:var(--mut);font-size:15.5px;margin-top:6px}
+.ta{margin-top:14px;width:100%;min-height:120px;border-radius:14px;border:1.5px solid var(--line);background:#fff;font-size:18px;line-height:1.5;padding:14px 16px;color:var(--ink);resize:vertical}
+.ta:focus{border-color:var(--green2);outline:none;box-shadow:0 0 0 4px rgba(23,89,74,.15)}
+.ex{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;min-height:40px;padding:0 14px;font:500 14.5px/1 var(--sans);cursor:pointer}
+.chip:hover{border-color:var(--green2);background:var(--mint)}
+.row2{display:flex;gap:10px;margin-top:14px}
+.mic{flex:1;min-height:56px;border-radius:14px;border:0;background:var(--green);color:#fff;font:600 16.5px/1 var(--sans);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:background .2s}
+.mic:hover{background:var(--green2)}
+.mic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sendb{min-height:56px;padding:0 22px;border-radius:14px;border:0;background:var(--ink);color:#fff;font:600 16.5px/1 var(--sans);cursor:pointer}
+.reply{margin-top:14px;border-radius:14px;background:var(--sun-bg);padding:14px 16px;font-size:16px;display:none}
+.reply b{display:block;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#7a5a07;margin-bottom:4px}
+.tg{display:flex;gap:12px;align-items:center;padding:16px 18px;color:var(--ink)}
+.tg i{width:42px;height:42px;border-radius:50%;background:#e4f1fb;display:grid;place-items:center;flex:none}
+.tg svg{width:20px;height:20px;fill:#2b8fd6}
+.tg b{display:block;font-size:16px}.tg span{font-size:14.5px;color:var(--mut)}
+.log{padding:20px}
+.log h3{font:600 18px/1.2 var(--serif);margin-bottom:8px}
+.log ul{list-style:none}
+.log li{padding:10px 0;border-top:1px solid var(--line);font-size:15px;display:flex;gap:10px}
+.log li:first-child{border-top:0}.log time{color:var(--mut);flex:none;width:46px;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:no-preference){.log li.new{animation:in .6s var(--ease)}@keyframes in{from{opacity:0;transform:translateY(-6px)}}}
+@media (max-width:880px){.grid{display:flex;flex-direction:column;gap:16px}.side{display:contents}.voice{order:1;padding:18px}.tasks{order:2}.tg{order:3}.log{order:4}.ta{min-height:104px}}
+@media (max-width:480px){.guide{font-size:14.5px;padding:10px 14px}.guide svg{display:none}.wrap{padding:0 16px}.task{padding:16px}.row2{flex-direction:column}.sendb{min-height:52px}}
+</style></head><body>
+<div class="demo"><b>DEMO</b>This is a demonstration with made-up data: no real message is sent.</div>
+<div class="wrap">
+<div class="bar"><div><h1 id="ttl">Good morning. You have 3 things to do today.</h1><p>Your daily board: approve, postpone, or ask your assistant.</p></div></div>
+<div class="guide"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg><span><b>Try it:</b> tap “Approve and send” on a message, then type to the assistant in the box (by voice, from your phone, in the real version).</span></div>
+<div class="grid">
+<div class="tasks" id="tasks" aria-live="polite"></div>
+<aside class="side">
+  <div class="card voice">
+    <h2>Ask your assistant</h2>
+    <p class="s">Write like you would to a coworker. You can ask anything.</p>
+    <textarea class="ta" id="txt" rows="4" placeholder="For example: Miller can wait until Monday" aria-label="Write a message to the assistant"></textarea>
+    <div class="ex" id="ex"><button class="chip" type="button">Miller can wait until Monday</button><button class="chip" type="button">Davis paid</button><button class="chip" type="button">What do I need to do today?</button></div>
+    <div class="row2"><button class="mic" id="mic" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Tap to talk</button><button class="sendb" id="send" type="button">Send</button></div>
+    <div class="reply" id="reply" role="status" aria-live="polite"></div>
+  </div>
+  <div class="card log"><h3>What happened</h3><ul id="log" aria-live="polite"></ul></div>
+</aside>
+</div>
+</div>
+<script>
+(function(){
+var INIT=function(){return [
+ {id:1,name:"Miller Roofing Job",amt:"$4,800",st:"late",label:"Quiet for 9 days",meta:"Estimate sent on Oct 27",draft:"Hi, just checking if you had a chance to look over the estimate from Oct 27. Happy to walk through it together if that helps.",state:"open"},
+ {id:2,name:"Sarah Johnson",amt:"$2,100",st:"today",label:"Call back today",meta:"Estimate sent 3 days ago",draft:"Hi Sarah, I sent your estimate three days ago. Any questions, or anything you'd like to change?",state:"open"},
+ {id:3,name:"Davis Property Group",amt:"$1,350",st:"pay",label:"Invoice overdue",meta:"Invoice 112 was due Oct 30",draft:"Hi, our records show invoice 112 for $1,350, due Oct 30, is still open. Could you confirm the payment date?",state:"open"}
+]};
+var T=INIT(),el=document.getElementById("tasks"),log=document.getElementById("log"),ttl=document.getElementById("ttl");
+function hhmm(){var d=new Date();return ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)}
+function add(m){var li=document.createElement("li");li.className="new";li.innerHTML="<time>"+hhmm()+"</time><span>"+m+"</span>";log.insertBefore(li,log.firstChild)}
+function pill(t){var m={late:"s-late",today:"s-today",pay:"s-pay"}[t.st];
+ if(t.state==="sent")return '<span class="pill s-ok">Sent</span>';
+ if(t.state==="later")return '<span class="pill s-wait">Postponed'+(t.when?' · '+t.when:'')+'</span>';
+ if(t.state==="paid")return '<span class="pill s-ok">Paid</span>';
+ if(t.state==="drop")return '<span class="pill s-wait">Dismissed</span>';
+ return '<span class="pill '+m+'">'+t.label+'</span>'}
+function render(){
+ var open=0;el.innerHTML="";
+ T.forEach(function(t){
+  if(t.state==="open")open++;
+  var d=document.createElement("article");d.className="card task"+(t.state!=="open"?" done":"");
+  var b='<div class="t-top">'+pill(t)+'</div><div class="t-name"><span>'+t.name+'</span><span class="t-amt">'+t.amt+'</span></div><div class="t-meta">'+t.meta+(t.note?' · <b>Note: '+t.note+'</b>':'')+'</div>';
+  if(t.state==="open"){b+='<div class="draft"><small>Message ready, sent as your business</small>'+t.draft+'</div><div class="acts"><button class="b go" data-a="go" data-i="'+t.id+'">Approve and send</button><button class="b wait" data-a="wait" data-i="'+t.id+'">Postpone to tomorrow</button><button class="link" data-a="drop" data-i="'+t.id+'">Dismiss</button></div>'}
+  else if(t.state==="sent"){b+='<div class="sentbox"><b>Sent at '+t.at+' (simulation)</b>“'+t.draft+'”<button class="undo" data-a="undo" data-i="'+t.id+'">Undo</button></div>'}
+  d.innerHTML=b;el.appendChild(d)});
+ if(open===0){var e=document.createElement("div");e.className="card empty";e.innerHTML='<h2>All done for today.</h2><p>Tomorrow morning I will prepare a fresh list.</p><button class="b go" id="again" style="flex:none;width:100%;max-width:280px">Restart the demo</button>';el.appendChild(e);document.getElementById("again").onclick=function(){T=INIT();log.innerHTML="";add("Demo restarted");render()}}
+ ttl.textContent=open===0?"All done for today.":(open===1?"Good morning. You have 1 thing to do today.":"Good morning. You have "+open+" things to do today.")}
+function find(i){return T.filter(function(t){return t.id==i})[0]}
+el.addEventListener("click",function(e){var b=e.target.closest("button");if(!b||!b.dataset.a)return;var t=find(b.dataset.i),a=b.dataset.a;
+ if(a==="go"){t.state="sent";t.at=hhmm();add("Message ready for <b>"+t.name+"</b> (simulation)")}
+ if(a==="undo"){t.state="open";add("Undone: <b>"+t.name+"</b> is back on the list")}
+ if(a==="wait"){t.state="later";t.when="tomorrow";add("<b>"+t.name+"</b> postponed to tomorrow")}
+ if(a==="drop"){t.state="drop";add("<b>"+t.name+"</b> dismissed")}
+ render()});
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+var DAYS={monday:"Monday",tuesday:"Tuesday",wednesday:"Wednesday",thursday:"Thursday",friday:"Friday",saturday:"Saturday",tomorrow:"tomorrow"};
+window.__interpret=function(raw){
+ var s=norm(raw),t=null;
+ if(/what (do i|should i|is there)|today|summary|status|to do/.test(s)&&!/wait|paid/.test(s)){var o=T.filter(function(x){return x.state==="open"});
+  return {msg:o.length?("You have "+o.length+(o.length===1?" thing":" things")+" to do today: "+o.map(function(x){return x.name+" ("+x.label.toLowerCase()+")"}).join(", ")+"."):"You are done for today. Nice work."}}
+ T.forEach(function(x){norm(x.name).split(/\s+/).forEach(function(w){if(w.length>3&&s.indexOf(w)>-1&&!t)t=x})});
+ if(!t)return {msg:"This is a demo: I only understand the three customers above. Try “Miller”, “Sarah” or “Davis”."};
+ var day=null;Object.keys(DAYS).forEach(function(k){if(s.indexOf(k)>-1&&!day)day=DAYS[k]});
+ if(/paid|settled|received the payment/.test(s)){t.state="paid";add("<b>"+t.name+"</b> marked as paid");render();return {msg:"Marked as paid: "+t.name+"."}}
+ if(/wait|postpone|later|hold|not now|until/.test(s)||day){t.state="later";t.when=day||"later";add("<b>"+t.name+"</b> postponed"+(day?" to "+day:""));render();return {msg:"Got it: "+t.name+" postponed"+(day?" to "+day:"")+"."}}
+ if(/send|write|follow up|remind|call back/.test(s)&&t.state==="open"){t.state="sent";t.at=hhmm();add("Message ready for <b>"+t.name+"</b> (simulation)");render();return {msg:"Done: the message for "+t.name+" is ready (in the real version it goes out after your OK)."}}
+ t.note=raw.slice(0,60);add("Note on <b>"+t.name+"</b>: “"+raw.slice(0,60)+"”");render();return {msg:"I added the note to "+t.name+"."}
+};
+var rep=document.getElementById("reply"),ta=document.getElementById("txt");
+function respond(raw){var r=window.__interpret(raw);rep.style.display="block";rep.innerHTML="<b>Assistant</b>"+r.msg}
+function go(){var v=ta.value.trim();if(!v){ta.focus();return}respond(v);ta.value=""}
+document.getElementById("send").onclick=go;
+ta.addEventListener("keydown",function(e){if(e.key==="Enter"&&(e.metaKey||e.ctrlKey))go()});
+document.getElementById("ex").addEventListener("click",function(e){var c=e.target.closest(".chip");if(c){ta.value=c.textContent;ta.focus()}});
+document.getElementById("mic").onclick=function(){rep.style.display="block";rep.innerHTML="<b>This is a demo</b>I can't hear you here: type your question in the box. In the real version you tap, talk, and the assistant updates your list."};
+add("Good morning: you have 3 things to do today");render();
+})();
+</script>
+</body></html>
