@@ -49,6 +49,17 @@ details p{color:var(--mut);margin-top:10px;font-size:16.5px}
 footer{padding:40px 0 60px;color:var(--mut);font-size:14.5px;border-top:1px solid var(--line);margin-top:30px}
 @media (max-width:760px){.grid,.price{grid-template-columns:1fr}.gift{padding:26px 20px}body{font-size:17px}.btn{width:100%;justify-content:center}}
 @media (prefers-reduced-motion:no-preference){.hero>*{animation:rise .7s var(--ease) both}.hero>*:nth-child(2){animation-delay:.07s}.hero>*:nth-child(3){animation-delay:.14s}.hero>*:nth-child(4){animation-delay:.21s}@keyframes rise{from{opacity:0;transform:translateY(14px)}}}
+
+.gl{list-style:none;margin:22px 0 4px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gl li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.gl .k{font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
+.gl b{font:600 19px/1.25 var(--serif);color:#fff}
+.gl p{margin:0;color:#cfe3da;font-size:15px;line-height:1.5}
+.gl a{margin-top:auto;padding-top:8px;color:var(--sun);font-weight:600;font-size:14.5px;text-decoration:none}
+.gl li:before,.gl li:after{display:none!important;content:none!important}.gl li{padding-left:18px}.gl a:hover{text-decoration:underline}
+.gwho{margin:16px 0 0;padding:14px 16px;border-radius:14px;background:rgba(0,0,0,.18);font-size:15px;color:#d6e8df}
+.gwho b{color:#fff}
+@media (max-width:760px){.gl{grid-template-columns:1fr}}
 </style></head><body>
 <div class="wrap">
 <div class="top"><span>Pacta</span><a href="https://pactacrm.com">pactacrm.com</a></div>
@@ -75,9 +86,14 @@ footer{padding:40px 0 60px;color:var(--mut);font-size:14.5px;border-top:1px soli
 <h2>In regalo: il Sales Assistant</h2>
 <div class="val"><s>1.500 €</s>0 €</div>
 <p>L’agente AI che Neder usa ogni giorno per le sue vendite, su Telegram, configurato sul tuo modo di lavorare. Gestisce la parte burocratica del venditore, così ti concentri solo sulle vendite. Da quando Neder usa Pacta insieme al Sales Assistant, il suo tasso di chiusura è passato dal 25 al 40 per cento. Ai primi 100 clienti che attivano Pacta.</p>
-<ul>
-<li>Ogni sera legge le registrazioni delle call, aggiorna il CRM e crea i task</li><li>Mette i promemoria sul tuo calendario e prepara i prossimi passi</li><li>Ogni mattina controlla gli appuntamenti e ti prepara i messaggi, pronti da mandare con un click su WhatsApp</li><li>Gli scrivi o gli parli: aggiorna lead e trattative, e ti avvisa su quelli più caldi da richiamare</li></ul>
-<p class="small">Il modello AI che lo alimenta è a carico tuo (abbonamento o API del servizio che preferisci, oppure un modello locale). L’agente propone, tu approvi: nulla parte senza il tuo sì.</p>
+<ul class="gl">
+<li><span class="k">Ogni mattina · 08:00</span><b>Reminder e link delle call</b><p>Il giorno della call parte la conferma (un’ora prima, mai prima delle 9) e dieci minuti prima il link. Solo a chi ha un appuntamento nel tuo calendario, e si ferma da solo se disdice. Il testo lo scrivi tu.</p><a href="https://nederghadhab.com/flussi/reminder-whatsapp/">Guarda come funziona →</a></li>
+<li><span class="k">Ogni sera · 22:00</span><b>Chiusura della giornata</b><p>Legge le registrazioni delle call, aggiorna trattative, note e obiezioni nel CRM e crea i task. Tu non compili niente.</p><a href="https://nederghadhab.com/flussi/assistente-vendite/">Guarda una giornata intera →</a></li>
+<li><span class="k">Due volte al giorno</span><b>Check-in e promemoria</b><p>Ti chiede l’esito di ogni appuntamento, registra tutto e mette i richiami nel calendario, nell’orario che hai scelto.</p><a href="https://nederghadhab.com/flussi/assistente-vendite/">Guarda come funziona →</a></li>
+<li><span class="k">Quando vuoi</span><b>Scrivigli o parlagli</b><p>Aggiorna lead e trattative da un messaggio o da un vocale, e ti avvisa su quelli più caldi da richiamare.</p><a href="https://nederghadhab.com/flussi/assistente-vendite/">Guarda un esempio →</a></li>
+</ul>
+<p class="gwho"><b>Chi decide cosa.</b> L’assistente scrive nel CRM e te lo riassume. Ai clienti manda solo i messaggi di conferma e di link che hai scritto tu, e solo a chi ha una call in calendario. Chiudere o perdere una trattativa lo decidi sempre tu.</p>
+<p class="small">Il modello AI che lo alimenta è a carico tuo (abbonamento o API del servizio che preferisci, oppure un modello locale).</p>
 </div>
 </section>
 
